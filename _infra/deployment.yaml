@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reactions-ui
+  labels:
+    app: reactions-ui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: reactions-ui
+  template:
+    metadata:
+      labels:
+        app: reactions-ui
+    spec:
+      containers:
+        - name: reactions-ui
+          image: anurag2911/reactionsui:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
