@@ -75,8 +75,8 @@ function App() {
           >
             <option value="">Select</option>
             {categories.map((c) => (
-              <option key={c.id} value={c.id}>
-                {c.title}
+              <option key={c.ID} value={c.ID}>
+                {c.Title}
               </option>
             ))}
           </select>
