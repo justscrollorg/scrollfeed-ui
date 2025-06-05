@@ -37,14 +37,20 @@ function App() {
       `${API_BASE}/videos?region=${selectedRegion}&category=${selectedCategory}&maxResults=${maxResults}`
     )
       .then((res) => res.json())
-      .then(setVideos)
+      .then((data) => {
+        console.log("Top videos:", data);
+        setVideos(data);
+      })
       .catch((err) => console.error("Failed to fetch top videos", err));
   };
 
   const searchVideos = () => {
     fetch(`${API_BASE}/search?query=${searchQuery}&region=${selectedRegion}`)
       .then((res) => res.json())
-      .then(setSearchResults)
+      .then((data) => {
+        console.log("Search results:", data);
+        setSearchResults(data);
+      })
       .catch((err) => console.error("Failed to search videos", err));
   };
 
@@ -75,8 +81,8 @@ function App() {
           >
             <option value="">Select</option>
             {categories.map((c) => (
-              <option key={c.ID} value={c.ID}>
-                {c.Title}
+              <option key={c.id} value={c.id}>
+                {c.title}
               </option>
             ))}
           </select>
@@ -110,12 +116,12 @@ function App() {
         <h2>Top Videos</h2>
         <div className="video-grid">
           {videos.map((v) => (
-            <div className="video-card" key={v.ID}>
+            <div className="video-card" key={v.id}>
               <p>
-                <strong>{v.Snippet.title}</strong>
+                <strong>{v.snippet?.title}</strong>
               </p>
-              <p>Channel: {v.Snippet.channelTitle}</p>
-              <a href={v.VideoURL} target="_blank" rel="noopener noreferrer">
+              <p>Channel: {v.snippet?.channelTitle}</p>
+              <a href={v.videoURL} target="_blank" rel="noopener noreferrer">
                 Watch
               </a>
             </div>
@@ -125,12 +131,12 @@ function App() {
         <h2>Search Results</h2>
         <div className="video-grid">
           {searchResults.map((v) => (
-            <div className="video-card" key={v.ID.VideoID}>
+            <div className="video-card" key={v.id?.videoId || v.id}>
               <p>
-                <strong>{v.Snippet.title}</strong>
+                <strong>{v.snippet?.title}</strong>
               </p>
-              <p>Channel: {v.Snippet.channelTitle}</p>
-              <a href={v.VideoURL} target="_blank" rel="noopener noreferrer">
+              <p>Channel: {v.snippet?.channelTitle}</p>
+              <a href={v.videoURL} target="_blank" rel="noopener noreferrer">
                 Watch
               </a>
             </div>
