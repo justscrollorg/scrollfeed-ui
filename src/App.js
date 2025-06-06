@@ -39,7 +39,7 @@ function App() {
 
   return (
     <div className="app-container">
-      <h1>YouTube Video Explorer</h1>
+      <h1>Trending...</h1>
       <Controls
         regions={regions}
         categories={categories}
