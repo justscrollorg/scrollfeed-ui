@@ -6,14 +6,14 @@ function Results({ videos = [], searchResults = [] }) {
     <div className="results">
       <h2>Top Videos</h2>
       <div className="video-grid">
-        {(videos || []).map((v) => (
+        {videos.map((v) => (
           <VideoCard key={v.id} video={v} />
         ))}
       </div>
 
       <h2>Search Results</h2>
       <div className="video-grid">
-        {(searchResults || []).map((v) => (
+        {searchResults.map((v) => (
           <VideoCard key={v.id?.videoId || v.id} video={v} />
         ))}
       </div>
