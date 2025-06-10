@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
-import "./App.css";
 import Controls from "./components/Controls/Controls";
 import SearchBar from "./components/SearchBar/SearchBar";
 import Results from "./components/Results/Results";
-import { fetchRegions, fetchCategories, fetchTopVideos, searchVideos } from "./services/api";
+import {
+  fetchRegions,
+  fetchCategories,
+  fetchTopVideos,
+  searchVideos,
+} from "./services/api";
 
 function App() {
   const [regions, setRegions] = useState([]);
@@ -21,7 +25,9 @@ function App() {
 
   useEffect(() => {
     if (selectedRegion) {
-      fetchCategories(selectedRegion).then(setCategories).catch(console.error);
+      fetchCategories(selectedRegion)
+        .then(setCategories)
+        .catch(console.error);
     }
   }, [selectedRegion]);
 
@@ -38,8 +44,10 @@ function App() {
   };
 
   return (
-    <div className="app-container">
-      <h1>Trending...</h1>
+    <div className="max-w-6xl mx-auto px-4 py-8 font-sans text-gray-800">
+      <h1 className="text-4xl font-bold text-center text-blue-700 mb-10">
+        Trending...
+      </h1>
       <Controls
         regions={regions}
         categories={categories}
@@ -51,7 +59,11 @@ function App() {
         onMaxResultsChange={(e) => setMaxResults(Number(e.target.value))}
         onFetchTopVideos={handleTopVideos}
       />
-      <SearchBar query={searchQuery} onQueryChange={(e) => setSearchQuery(e.target.value)} onSearch={handleSearch} />
+      <SearchBar
+        query={searchQuery}
+        onQueryChange={(e) => setSearchQuery(e.target.value)}
+        onSearch={handleSearch}
+      />
       <Results videos={videos} searchResults={searchResults} />
     </div>
   );
