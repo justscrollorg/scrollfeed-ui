@@ -16,6 +16,7 @@ function App() {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [maxResults, setMaxResults] = useState(5);
   const [videos, setVideos] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -71,7 +72,7 @@ function App() {
         onQueryChange={(e) => setSearchQuery(e.target.value)}
         onSearch={handleSearch}
       />
-      <Results videos={videos} loading={loading} />
+      <Results videos={videos} searchResults={searchResults} loading={loading} />
     </div>
   );
 }
