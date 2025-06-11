@@ -1,18 +1,19 @@
 import React from "react";
 
 function VideoCard({ video }) {
-  const id = video.id?.videoId || video.id;
   const thumbnailUrl =
     video.snippet?.thumbnails?.medium?.url ||
     video.snippet?.thumbnails?.default?.url;
 
-  const videoLink = video.videoURL || `https://www.youtube.com/watch?v=${id}`;
+  const videoLink =
+    video.videoURL || `https://www.youtube.com/watch?v=${video.id?.videoId || video.id}`;
+
   const publishedAt = video.snippet?.publishedAt
     ? new Date(video.snippet.publishedAt).toLocaleDateString()
     : null;
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow hover:shadow-lg transition duration-300 flex flex-col">
+    <div className="bg-white rounded-lg shadow hover:shadow-lg transition duration-300 dark:bg-gray-800 flex flex-col">
       <a
         href={videoLink}
         target="_blank"
@@ -24,7 +25,7 @@ function VideoCard({ video }) {
             <img
               src={thumbnailUrl}
               alt={video.snippet?.title}
-              className="rounded-t-lg w-full h-auto object-cover"
+              className="w-full h-48 object-cover rounded-t-lg"
             />
             <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-t-lg">
               <svg
@@ -44,8 +45,8 @@ function VideoCard({ video }) {
         )}
       </a>
 
-      <div className="p-4 flex flex-col flex-grow">
-        <p className="text-lg font-semibold text-gray-800 dark:text-white line-clamp-2">
+      <div className="p-4">
+        <p className="text-md font-semibold text-gray-800 dark:text-white line-clamp-2">
           {video.snippet?.title}
         </p>
         <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">
@@ -55,7 +56,7 @@ function VideoCard({ video }) {
           href={videoLink}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-blue-600 dark:text-blue-400 font-medium hover:underline mt-auto"
+          className="text-blue-600 dark:text-blue-400 font-medium hover:underline mt-2 inline-block"
         >
           Watch →
         </a>

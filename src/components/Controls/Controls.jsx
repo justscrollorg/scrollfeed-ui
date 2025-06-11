@@ -1,3 +1,5 @@
+import React from "react";
+
 function Controls({
   regions,
   categories,
@@ -10,13 +12,13 @@ function Controls({
   onFetchTopVideos,
 }) {
   return (
-    <div className="flex flex-wrap justify-center gap-6 mb-8">
-      <div className="flex flex-col min-w-[180px]">
-        <label className="font-semibold mb-1">Region</label>
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+      <div>
+        <label className="block mb-1 font-semibold">Region</label>
         <select
+          className="w-full border border-gray-300 rounded px-3 py-2"
           value={selectedRegion}
           onChange={onRegionChange}
-          className="px-3 py-2 border rounded-md text-sm"
         >
           {regions.map((r) => (
             <option key={r} value={r}>
@@ -26,12 +28,12 @@ function Controls({
         </select>
       </div>
 
-      <div className="flex flex-col min-w-[180px]">
-        <label className="font-semibold mb-1">Category</label>
+      <div>
+        <label className="block mb-1 font-semibold">Category</label>
         <select
+          className="w-full border border-gray-300 rounded px-3 py-2"
           value={selectedCategory}
           onChange={onCategoryChange}
-          className="px-3 py-2 border rounded-md text-sm"
         >
           <option value="">Select</option>
           {categories.map((c) => (
@@ -42,24 +44,26 @@ function Controls({
         </select>
       </div>
 
-      <div className="flex flex-col min-w-[120px]">
-        <label className="font-semibold mb-1">Max Results</label>
+      <div>
+        <label className="block mb-1 font-semibold">Max Results</label>
         <input
           type="number"
           min="1"
           max="50"
+          className="w-full border border-gray-300 rounded px-3 py-2"
           value={maxResults}
           onChange={onMaxResultsChange}
-          className="px-3 py-2 border rounded-md text-sm"
         />
       </div>
 
-      <button
-        onClick={onFetchTopVideos}
-        className="self-end bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700"
-      >
-        Get Top Videos
-      </button>
+      <div className="flex items-end">
+        <button
+          onClick={onFetchTopVideos}
+          className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
+        >
+          Get Top Videos
+        </button>
+      </div>
     </div>
   );
 }
