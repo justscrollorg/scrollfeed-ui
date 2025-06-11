@@ -1,16 +1,25 @@
+import React from "react";
+
 function SearchBar({ query, onQueryChange, onSearch }) {
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      onSearch();
+    }
+  };
+
   return (
-    <div className="flex justify-center gap-4 mb-10">
+    <div className="search-section flex gap-2 justify-center">
       <input
         type="text"
         placeholder="Search for videos..."
         value={query}
         onChange={onQueryChange}
-        className="px-4 py-2 border rounded-md w-80"
+        onKeyDown={handleKeyDown} // <-- trigger search on Enter
+        className="border border-gray-400 px-4 py-2 rounded w-80"
       />
       <button
         onClick={onSearch}
-        className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700"
+        className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition"
       >
         Search
       </button>

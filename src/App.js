@@ -32,16 +32,21 @@ function App() {
   const handleTopVideos = () => {
     setLoading(true);
     fetchTopVideos(selectedRegion, selectedCategory, maxResults)
-      .then(setVideos)
-      .catch(console.error)
+      .then((data) => {
+        setVideos(data);
+        setSearchResults([]);
+        setSearchQuery("");
+      })
       .finally(() => setLoading(false));
   };
 
   const handleSearch = () => {
     setLoading(true);
     searchVideos(searchQuery, selectedRegion)
-      .then(setVideos)
-      .catch(console.error)
+      .then((data) => {
+        setSearchResults(data); 
+        setVideos([]); 
+      })
       .finally(() => setLoading(false));
   };
 
