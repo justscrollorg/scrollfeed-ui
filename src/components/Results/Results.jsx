@@ -5,7 +5,7 @@ function Results({ videos, loading }) {
 
   return (
     <div className="mt-12">
-      <h2 className="text-2xl font-bold mb-4">Results</h2>
+      <h2 className="text-2xl font-bold mb-4">Search Results</h2>
 
       {loading ? (
         <p className="text-blue-500 italic">Loading...</p>
