@@ -15,7 +15,7 @@ function App() {
   const [selectedRegion, setSelectedRegion] = useState("US");
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
-  const [maxResults, setMaxResults] = useState(5);
+  const [maxResults, setMaxResults] = useState(50);
   const [videos, setVideos] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
