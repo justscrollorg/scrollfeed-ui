@@ -23,7 +23,16 @@ function App() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    fetchRegions().then(setRegions).catch(console.error);
+    fetchRegions()
+      .then((regionsList) => {
+        setRegions(regionsList);
+        const browserRegion = navigator.language.slice(-2).toUpperCase(); // e.g., "en-US" → "US"
+        const defaultRegion = regionsList.includes(browserRegion)
+          ? browserRegion
+          : "US";
+        setSelectedRegion(defaultRegion);
+      })
+      .catch(console.error);
   }, []);
 
   useEffect(() => {
@@ -76,10 +85,11 @@ function App() {
           onQueryChange={(e) => setSearchQuery(e.target.value)}
           onSearch={handleSearch}
         />
-        <Results
-          videos={videos.length ? videos : searchResults}
-          loading={loading}
-        />
+        {searchQuery.length > 0 ? (
+          <Results videos={searchResults} loading={loading} />
+        ) : (
+          <Tabs selectedRegion={selectedRegion} />
+        )}
         <Footer />
       </div>
     </>
