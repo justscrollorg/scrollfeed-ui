@@ -10,7 +10,7 @@ function Footer() {
           This app is not affiliated with or endorsed by YouTube or Google.
         </p>
 
-        <div className="flex justify-center items-center gap-2 mt-2">
+        {/* <div className="flex justify-center items-center gap-2 mt-2">
           <span>Powered by</span>
           <a
             href="https://www.youtube.com"
@@ -24,7 +24,7 @@ function Footer() {
               className="h-5"
             />
           </a>
-        </div>
+        </div> */}
 
         <a
           href="https://www.youtube.com/t/terms"
