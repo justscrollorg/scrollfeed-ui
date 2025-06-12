@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import Controls from "./components/Controls/Controls";
 import SearchBar from "./components/SearchBar/SearchBar";
 import Results from "./components/Results/Results";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/Navbar/Navbar";
+import Footer from "./components/Footer/Footer";
 import {
   fetchRegions,
   fetchCategories,
@@ -79,6 +80,7 @@ function App() {
           videos={videos.length ? videos : searchResults}
           loading={loading}
         />
+        <Footer />
       </div>
     </>
   );
