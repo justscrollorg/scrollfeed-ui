@@ -24,3 +24,5 @@ function SearchBar({ query, onQueryChange, onSearch }) {
     </div>
   );
 }
+
+export default SearchBar;

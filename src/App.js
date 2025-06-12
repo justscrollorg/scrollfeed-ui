@@ -4,6 +4,7 @@ import SearchBar from "./components/SearchBar/SearchBar";
 import Results from "./components/Results/Results";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
+import Tabs from "./components/Tabs/Tabs";
 import {
   fetchRegions,
   fetchCategories,
