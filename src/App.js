@@ -4,7 +4,7 @@ import Footer from "./components/Footer/Footer";
 import SearchBar from "./components/SearchBar/SearchBar";
 import Results from "./components/Results/Results";
 import Tabs from "./components/Tabs/Tabs";
-import { fetchRegions, fetchCategories, searchVideos } from "./services/api";
+import { fetchRegions, searchVideos } from "./services/api";
 
 function App() {
   const [regions, setRegions] = useState([]);
@@ -17,13 +17,12 @@ function App() {
     fetchRegions().then((regionList) => {
       setRegions(regionList);
       const browserRegion = navigator.language.slice(-2).toUpperCase();
-      setSelectedRegion(
-        regionList.includes(browserRegion) ? browserRegion : "US"
-      );
+      setSelectedRegion(regionList.includes(browserRegion) ? browserRegion : "US");
     });
   }, []);
 
   const handleSearch = () => {
+    if (!searchQuery) return;
     setLoading(true);
     searchVideos(searchQuery, selectedRegion)
       .then((data) => {
@@ -37,11 +36,10 @@ function App() {
       <Navbar
         regions={regions}
         selectedRegion={selectedRegion}
-        onRegionChange={setSelectedRegion}
+        onRegionChange={(e) => setSelectedRegion(e.target.value)}
       />
-
       <div className="max-w-6xl mx-auto px-4 py-8 font-sans text-gray-800 dark:text-gray-100">
-        <h1 className="text-4xl font-bold text-center text-blue-700 dark:text-blue-300 mb-10">
+        <h1 className="text-3xl sm:text-4xl font-bold text-center text-blue-700 dark:text-blue-300 mb-6">
           Top Videos in {selectedRegion}
         </h1>
 
