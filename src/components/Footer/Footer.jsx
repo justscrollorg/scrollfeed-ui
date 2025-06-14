@@ -24,7 +24,7 @@ function Footer() {
               className="h-5"
             />
           </a>
-        </div> */}
+        </div> 
 
         <a
           href="https://www.youtube.com/t/terms"
@@ -34,7 +34,7 @@ function Footer() {
         >
           View YouTube Terms of Service
         </a>
-
+        */}
         <p className="text-xs text-gray-400 mt-2">
           © {new Date().getFullYear()} Reactions by Anurag Kumar. All rights reserved.
         </p>
