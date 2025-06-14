@@ -1,7 +1,12 @@
 [
-  { "code": "US", "name": "United States", "flag": "🇺🇸" },
-  { "code": "DE", "name": "Germany", "flag": "🇩🇪" },
-  { "code": "IN", "name": "India", "flag": "🇮🇳" },
-  { "code": "FR", "name": "France", "flag": "🇫🇷" },
-  { "code": "JP", "name": "Japan", "flag": "🇯🇵" }
+  { "code": "US", "flag": "🇺🇸" },
+  { "code": "IN", "flag": "🇮🇳" },
+  { "code": "DE", "flag": "🇩🇪" },
+  { "code": "FR", "flag": "🇫🇷" },
+  { "code": "GB", "flag": "🇬🇧" },
+  { "code": "JP", "flag": "🇯🇵" },
+  { "code": "BR", "flag": "🇧🇷" },
+  { "code": "CA", "flag": "🇨🇦" },
+  { "code": "KR", "flag": "🇰🇷" },
+  { "code": "RU", "flag": "🇷🇺" }
 ]
