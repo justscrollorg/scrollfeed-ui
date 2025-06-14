@@ -1,20 +1,23 @@
 import React from "react";
-import countryCodes from "../../data/countryCodes.json"; 
+import countryCodes from "../../data/countryCodes.json"; // [{ code: "US", flag: "🇺🇸" }, ...]
 
-function RegionSelector({ selectedRegion, onRegionChange }) {
+function RegionSelector({ selectedRegion, onChange, regions }) {
   return (
-    <div className="sticky top-0 z-50 bg-white dark:bg-gray-900 shadow px-4 py-2 border-b border-gray-200 flex items-center gap-4">
-      <label className="text-sm font-semibold text-gray-700 dark:text-gray-300">Region:</label>
+    <div className="flex items-center gap-2">
+      <label className="text-sm">Region:</label>
       <select
-        className="border border-gray-300 px-3 py-1 rounded focus:outline-none"
+        className="border border-gray-300 text-black rounded px-2 py-1"
         value={selectedRegion}
-        onChange={onRegionChange}
+        onChange={onChange}
       >
-        {countryCodes.map((region) => (
-          <option key={region.code} value={region.code}>
-            {region.flag} {region.code}
-          </option>
-        ))}
+        {regions.map((code) => {
+          const country = countryCodes.find((c) => c.code === code);
+          return (
+            <option key={code} value={code}>
+              {country?.flag || "🏳️"} {code}
+            </option>
+          );
+        })}
       </select>
     </div>
   );
