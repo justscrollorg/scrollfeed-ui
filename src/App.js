@@ -40,7 +40,7 @@ function App() {
       />
       <div className="max-w-6xl mx-auto px-4 py-8 font-sans text-gray-800 dark:text-gray-100">
         <h1 className="text-3xl sm:text-4xl font-bold text-center text-blue-700 dark:text-blue-300 mb-6">
-          Top Videos in {selectedRegion}
+          trending in {selectedRegion}
         </h1>
 
         <SearchBar
