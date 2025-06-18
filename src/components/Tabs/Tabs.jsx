@@ -4,31 +4,31 @@ import VideoCard from "../VideoCard/VideoCard";
 
 function Tabs({ selectedRegion }) {
   const [tabs, setTabs] = useState([]);
-  const [active, setActive] = useState(
-    () => localStorage.getItem("activeTab") || null
-  );
+  const [active, setActive] = useState(null);
   const [videos, setVideos] = useState({});
 
   useEffect(() => {
+    const regionKey = `activeTab_${selectedRegion}`;
+
     fetchCategories(selectedRegion).then((cats) => {
       setTabs(cats);
 
+      // Try to use region-specific saved tab
+      const cachedTabId = localStorage.getItem(regionKey);
+      const validCachedTab = cats.find((c) => c.id === cachedTabId);
+
+      // Prefer "News & Politics"
       const newsTab = cats.find(
         (c) => c.title.toLowerCase() === "news & politics"
       );
-      const defaultTab = newsTab || cats[0];
+      const defaultTab = validCachedTab || newsTab || cats[0];
 
-      // Use cached tab if region didn’t change
-      const cachedTabId = localStorage.getItem("activeTab");
-      const validCachedTab = cats.find((c) => c.id === cachedTabId);
+      if (defaultTab) {
+        setActive(defaultTab.id);
+        localStorage.setItem(regionKey, defaultTab.id);
 
-      const initialTab = validCachedTab || defaultTab;
-
-      if (initialTab) {
-        setActive(initialTab.id);
-        localStorage.setItem("activeTab", initialTab.id);
-        fetchTopVideos(selectedRegion, initialTab.id, 20).then((data) =>
-          setVideos((prev) => ({ ...prev, [initialTab.id]: data }))
+        fetchTopVideos(selectedRegion, defaultTab.id, 20).then((data) =>
+          setVideos((prev) => ({ ...prev, [defaultTab.id]: data }))
         );
       }
     });
@@ -36,7 +36,7 @@ function Tabs({ selectedRegion }) {
 
   const handleTabClick = (catId) => {
     setActive(catId);
-    localStorage.setItem("activeTab", catId);
+    localStorage.setItem(`activeTab_${selectedRegion}`, catId);
 
     if (!videos[catId]) {
       fetchTopVideos(selectedRegion, catId, 20).then((data) =>
