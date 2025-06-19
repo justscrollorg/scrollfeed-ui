@@ -6,30 +6,29 @@ function Tabs({ selectedRegion }) {
   const [tabs, setTabs] = useState([]);
   const [active, setActive] = useState(null);
   const [videos, setVideos] = useState({});
+  const [initialized, setInitialized] = useState(false);
 
   useEffect(() => {
     const regionKey = `activeTab_${selectedRegion}`;
+    setInitialized(false); // Reset when region changes
 
     fetchCategories(selectedRegion).then((cats) => {
       setTabs(cats);
 
-      // Try to use region-specific saved tab
       const cachedTabId = localStorage.getItem(regionKey);
       const validCachedTab = cats.find((c) => c.id === cachedTabId);
 
-      // Prefer "News & Politics"
-      const newsTab = cats.find(
-        (c) => c.title.toLowerCase() === "news & politics"
-      );
+      const newsTab = cats.find((c) => c.title.toLowerCase() === "news & politics");
       const defaultTab = validCachedTab || newsTab || cats[0];
 
       if (defaultTab) {
         setActive(defaultTab.id);
         localStorage.setItem(regionKey, defaultTab.id);
 
-        fetchTopVideos(selectedRegion, defaultTab.id, 20).then((data) =>
-          setVideos((prev) => ({ ...prev, [defaultTab.id]: data }))
-        );
+        fetchTopVideos(selectedRegion, defaultTab.id, 20).then((data) => {
+          setVideos((prev) => ({ ...prev, [defaultTab.id]: data }));
+          setInitialized(true);
+        });
       }
     });
   }, [selectedRegion]);
@@ -44,6 +43,14 @@ function Tabs({ selectedRegion }) {
       );
     }
   };
+
+  if (!initialized) {
+    return (
+      <div className="mt-8 text-center text-gray-500 italic">
+        Loading categories and videos...
+      </div>
+    );
+  }
 
   return (
     <div className="mt-8">
