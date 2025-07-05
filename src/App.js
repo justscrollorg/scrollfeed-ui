@@ -4,22 +4,34 @@ import Footer from "./components/Footer/Footer";
 import SearchBar from "./components/SearchBar/SearchBar";
 import Results from "./components/Results/Results";
 import Tabs from "./components/Tabs/Tabs";
+import NewsCard from "./components/NewsCard/NewsCard";
 import { fetchRegions, searchVideos } from "./services/api";
+import { fetchNewsByRegion } from "./services/newsApi";
 
 function App() {
   const [regions, setRegions] = useState([]);
   const [selectedRegion, setSelectedRegion] = useState("US");
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const [newsArticles, setNewsArticles] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     fetchRegions().then((regionList) => {
       setRegions(regionList);
       const browserRegion = navigator.language.slice(-2).toUpperCase();
-      setSelectedRegion(regionList.includes(browserRegion) ? browserRegion : "US");
+      const defaultRegion = regionList.includes(browserRegion)
+        ? browserRegion
+        : "US";
+      setSelectedRegion(defaultRegion);
     });
   }, []);
+
+  useEffect(() => {
+    fetchNewsByRegion(selectedRegion).then((news) => {
+      setNewsArticles(news);
+    });
+  }, [selectedRegion]);
 
   const handleSearch = () => {
     if (!searchQuery) return;
@@ -49,11 +61,21 @@ function App() {
           onSearch={handleSearch}
         />
 
-        {searchQuery.length > 0 ? (
-          <Results videos={searchResults} loading={loading} />
-        ) : (
-          <Tabs selectedRegion={selectedRegion} />
-        )}
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+          <div className="lg:col-span-1 overflow-y-auto max-h-[80vh] pr-2">
+            {newsArticles.map((article, index) => (
+              <NewsCard key={index} article={article} />
+            ))}
+          </div>
+
+          <div className="lg:col-span-3">
+            {searchQuery.length > 0 ? (
+              <Results videos={searchResults} loading={loading} />
+            ) : (
+              <Tabs selectedRegion={selectedRegion} />
+            )}
+          </div>
+        </div>
 
         <Footer />
       </div>
