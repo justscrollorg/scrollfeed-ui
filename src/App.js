@@ -50,7 +50,7 @@ function App() {
         selectedRegion={selectedRegion}
         onRegionChange={(e) => setSelectedRegion(e.target.value)}
       />
-      <div className="max-w-6xl mx-auto px-4 py-8 font-sans text-gray-800 dark:text-gray-100">
+      <div className="max-w-7xl mx-auto px-4 py-8 font-sans text-gray-800 dark:text-gray-100">
         <h1 className="text-3xl sm:text-4xl font-bold text-center text-blue-700 dark:text-blue-300 mb-6">
           trending ....
         </h1>
@@ -62,10 +62,19 @@ function App() {
         />
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-          <div className="lg:col-span-1 overflow-y-auto max-h-[80vh] pr-2">
-            {newsArticles.map((article, index) => (
-              <NewsCard key={index} article={article} />
-            ))}
+          <div className="lg:col-span-1 h-[80vh] overflow-y-auto pr-2">
+            <h2 className="text-xl font-semibold mb-4 text-blue-600 dark:text-blue-300">
+              Regional News
+            </h2>
+            {newsArticles.length > 0 ? (
+              newsArticles.map((article, index) => (
+                <NewsCard key={index} article={article} />
+              ))
+            ) : (
+              <p className="text-sm italic text-gray-500 dark:text-gray-400">
+                No news found for this region.
+              </p>
+            )}
           </div>
 
           <div className="lg:col-span-3">
