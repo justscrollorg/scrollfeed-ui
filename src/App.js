@@ -18,17 +18,24 @@ function App() {
 
   useEffect(() => {
     fetchRegions().then((regionList) => {
+      console.log("[App] Available regions:", regionList);
       setRegions(regionList);
+
       const browserRegion = navigator.language.slice(-2).toUpperCase();
       const defaultRegion = regionList.includes(browserRegion)
         ? browserRegion
         : "US";
+      console.log("[App] Setting default region:", defaultRegion);
       setSelectedRegion(defaultRegion);
     });
   }, []);
 
   useEffect(() => {
+    console.log("[App] Fetching news for region:", selectedRegion);
     fetchNewsByRegion(selectedRegion).then((news) => {
+      console.log(
+        `[App] Received ${news.length} articles for region ${selectedRegion}`
+      );
       setNewsArticles(news);
     });
   }, [selectedRegion]);
@@ -36,9 +43,16 @@ function App() {
   const handleSearch = () => {
     if (!searchQuery) return;
     setLoading(true);
+    console.log(
+      `[App] Searching videos for query="${searchQuery}", region="${selectedRegion}"`
+    );
     searchVideos(searchQuery, selectedRegion)
       .then((data) => {
+        console.log(`[App] Search returned ${data.length} results`);
         setSearchResults(data);
+      })
+      .catch((err) => {
+        console.error("[App] Search failed:", err);
       })
       .finally(() => setLoading(false));
   };
