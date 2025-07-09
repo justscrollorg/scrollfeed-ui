@@ -64,6 +64,7 @@ function App() {
         selectedRegion={selectedRegion}
         onRegionChange={(e) => setSelectedRegion(e.target.value)}
       />
+
       <div className="max-w-7xl mx-auto px-4 py-8 font-sans text-gray-800 dark:text-gray-100">
         <h1 className="text-3xl sm:text-4xl font-bold text-center text-blue-700 dark:text-blue-300 mb-6">
           trending ....
@@ -75,29 +76,34 @@ function App() {
           onSearch={handleSearch}
         />
 
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-          <div className="lg:col-span-1 h-[80vh] overflow-y-auto pr-2">
-            <h2 className="text-xl font-semibold mb-4 text-blue-600 dark:text-blue-300">
-              Regional News
-            </h2>
-            {newsArticles.length > 0 ? (
-              newsArticles.map((article, index) => (
-                <NewsCard key={index} article={article} />
-              ))
-            ) : (
-              <p className="text-sm italic text-gray-500 dark:text-gray-400">
-                No news found for this region.
-              </p>
-            )}
-          </div>
+        {/* Videos Section */}
+        <div className="mt-12">
+          {searchQuery.length > 0 ? (
+            <Results videos={searchResults} loading={loading} />
+          ) : (
+            <Tabs selectedRegion={selectedRegion} />
+          )}
+        </div>
 
-          <div className="lg:col-span-3">
-            {searchQuery.length > 0 ? (
-              <Results videos={searchResults} loading={loading} />
-            ) : (
-              <Tabs selectedRegion={selectedRegion} />
-            )}
-          </div>
+        {/* Regional News Section */}
+        <div className="mt-12">
+          <h2 className="text-xl font-semibold mb-4 text-blue-600 dark:text-blue-300">
+            Regional News
+          </h2>
+
+          {newsArticles.length > 0 ? (
+            <div className="flex overflow-x-auto space-x-4 scrollbar-hide pb-2">
+              {newsArticles.map((article, index) => (
+                <div key={index} className="min-w-[300px] flex-shrink-0">
+                  <NewsCard article={article} />
+                </div>
+              ))}
+            </div>
+          ) : (
+            <p className="text-sm italic text-gray-500 dark:text-gray-400">
+              No news found for this region.
+            </p>
+          )}
         </div>
 
         <Footer />
