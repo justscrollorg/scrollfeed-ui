@@ -67,7 +67,7 @@ function App() {
 
       <div className="max-w-7xl mx-auto px-4 py-8 font-sans text-gray-800 dark:text-gray-100">
         <h1 className="text-3xl sm:text-4xl font-bold text-center text-blue-700 dark:text-blue-300 mb-6">
-          trending ....
+          videos
         </h1>
 
         <SearchBar
@@ -88,7 +88,7 @@ function App() {
         {/* Regional News Section */}
         <div className="mt-12">
           <h2 className="text-xl font-semibold mb-4 text-blue-600 dark:text-blue-300">
-            Regional News
+            articles
           </h2>
 
           {newsArticles.length > 0 ? (
