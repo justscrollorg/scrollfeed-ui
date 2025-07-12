@@ -18,6 +18,7 @@ function HomePage() {
     fetchRegions().then((regionList) => {
       setRegions(regionList);
       const browserRegion = navigator.language.slice(-2).toUpperCase();
+      console.log('browserRegion=>',browserRegion)
       setSelectedRegion(regionList.includes(browserRegion) ? browserRegion : "US");
     });
   }, []);
