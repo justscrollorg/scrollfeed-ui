@@ -68,7 +68,7 @@ function Tabs({ selectedRegion }) {
             {tab.title}
             {tab.title.toLowerCase() === "news & politics" && (
               <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs px-2 py-0.5 rounded-full">
-                Default
+                {/* Default */}
               </span>
             )}
           </button>
