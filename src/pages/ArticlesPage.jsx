@@ -1,35 +1,39 @@
+// src/pages/ArticlesPage.jsx
 import { useEffect, useState } from "react";
+import { fetchRegions } from "../services/api";
+import { fetchNewsByRegion } from "../services/newsApi";
+import NewsCard from "../components/NewsCard/NewsCard";
 
 function ArticlesPage() {
-  const [articles, setArticles] = useState([]);
+  const [regions, setRegions] = useState([]);
+  const [selectedRegion, setSelectedRegion] = useState("US");
+  const [newsArticles, setNewsArticles] = useState([]);
 
   useEffect(() => {
-    fetch("/api/articles")  // Your .NET API endpoint
-      .then((res) => res.json())
-      .then((data) => setArticles(data.articles || []));
+    fetchRegions().then((regionList) => {
+      setRegions(regionList);
+      const browserRegion = navigator.language.slice(-2).toUpperCase();
+      setSelectedRegion(regionList.includes(browserRegion) ? browserRegion : "US");
+    });
   }, []);
 
+  useEffect(() => {
+    if (selectedRegion) {
+      fetchNewsByRegion(selectedRegion).then(setNewsArticles);
+    }
+  }, [selectedRegion]);
+
   return (
-    <div>
-      <h1 className="text-2xl font-bold text-blue-700 mb-4">Random Articles</h1>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        {articles.map((a, idx) => (
-          <div key={idx} className="bg-white shadow rounded p-4 dark:bg-gray-800">
-            {a.Image && <img src={a.Image} alt={a.Title} className="w-full h-40 object-cover rounded" />}
-            <h2 className="font-bold text-md mt-2">{a.Title}</h2>
-            <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">{a.Description}</p>
-            <a
-              href={a.Url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-600 dark:text-blue-400 font-medium hover:underline text-sm block mt-2"
-            >
-              Read More →
-            </a>
+    <>
+      <h1 className="text-3xl font-bold text-blue-700 mb-6">News Articles</h1>
+      <div className="flex flex-wrap gap-4">
+        {newsArticles.map((article, index) => (
+          <div key={index} className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4">
+            <NewsCard article={article} />
           </div>
         ))}
       </div>
-    </div>
+    </>
   );
 }
 
