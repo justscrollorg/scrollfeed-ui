@@ -14,17 +14,17 @@ function Navbar({ regions, selectedRegion, onRegionChange }) {
       <ul className="flex-1 flex justify-center gap-6 text-md font-medium">
         <li>
           <Link to="/" className="hover:underline">
-            Home
+            home
           </Link>
         </li>
         <li>
           <Link to="/newsarticles" className="hover:underline">
-            Articles
+            news-articles
           </Link>
         </li>
         <li>
           <Link to="/jokes" className="hover:underline">
-            Jokes
+            jokes
           </Link>
         </li>
       </ul>
