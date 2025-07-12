@@ -23,6 +23,11 @@ function Navbar({ regions, selectedRegion, onRegionChange }) {
           </Link>
         </li>
         <li>
+          <Link to="/wikiarticles" className="hover:underline">
+            random-articles
+          </Link>
+        </li>
+        <li>
           <Link to="/jokes" className="hover:underline">
             jokes
           </Link>

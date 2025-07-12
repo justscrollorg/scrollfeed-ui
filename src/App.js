@@ -1,9 +1,10 @@
 import { Routes, Route } from "react-router-dom";
 import VideoPage from "./pages/VideoPage";
-import NewsArticlesPage from "./pages/ArticlesPage";
+import NewsArticlesPage from "./pages/NewsArticlesPage";
 import JokesPage from "./pages/JokesPage";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
+import WikipediaArticlesPage from "./pages/WikipediaArticlesPage";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Routes>
           <Route path="/" element={<VideoPage />} />
           <Route path="/newsarticles" element={<NewsArticlesPage />} />
+          <Route path="/wikiarticles" element={<WikipediaArticlesPage />} />
           <Route path="/jokes" element={<JokesPage />} />
         </Routes>
       </div>
