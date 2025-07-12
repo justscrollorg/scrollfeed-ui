@@ -6,7 +6,7 @@ import NewsCard from "../components/NewsCard/NewsCard";
 import { fetchRegions, searchVideos } from "../services/api";
 import { fetchNewsByRegion } from "../services/newsApi";
 
-function HomePage() {
+function VideoPage() {
   const [regions, setRegions] = useState([]);
   const [selectedRegion, setSelectedRegion] = useState("US");
   const [searchQuery, setSearchQuery] = useState("");
@@ -60,4 +60,4 @@ function HomePage() {
   );
 }
 
-export default HomePage;
+export default VideoPage;
