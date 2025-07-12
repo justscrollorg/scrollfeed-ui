@@ -1,10 +1,10 @@
-// src/pages/ArticlesPage.jsx
+// src/pages/NewsArticlesPage.jsx
 import { useEffect, useState } from "react";
 import { fetchRegions } from "../services/api";
 import { fetchNewsByRegion } from "../services/newsApi";
 import NewsCard from "../components/NewsCard/NewsCard";
 
-function ArticlesPage() {
+function NewsArticlesPage() {
   const [regions, setRegions] = useState([]);
   const [selectedRegion, setSelectedRegion] = useState("US");
   const [newsArticles, setNewsArticles] = useState([]);
@@ -37,4 +37,4 @@ function ArticlesPage() {
   );
 }
 
-export default ArticlesPage;
+export default NewsArticlesPage;

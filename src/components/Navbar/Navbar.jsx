@@ -18,7 +18,7 @@ function Navbar({ regions, selectedRegion, onRegionChange }) {
           </Link>
         </li>
         <li>
-          <Link to="/articles" className="hover:underline">
+          <Link to="/newsarticles" className="hover:underline">
             Articles
           </Link>
         </li>
