@@ -11,7 +11,7 @@ function Navbar({ regions, selectedRegion, onRegionChange }) {
       </div>
 
       {/* Center: Nav Links */}
-      <ul className="flex-1 flex justify-center gap-6 text-md font-medium">
+      <ul className="flex-1 flex justify-center gap-6 text-lg font-artistic tracking-wider uppercase italic text-yellow-200">
         <li>
           <Link to="/" className="hover:underline">
             home
