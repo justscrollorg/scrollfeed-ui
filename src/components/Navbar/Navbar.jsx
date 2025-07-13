@@ -14,7 +14,7 @@ function Navbar({ regions, selectedRegion, onRegionChange }) {
       <ul className="flex-1 flex justify-center gap-6 text-sm italic text-white">
         <li>
           <Link to="/" className="hover:underline underline-offset-4">
-            Home
+            Random Articles
           </Link>
         </li>
         <li>
@@ -27,10 +27,10 @@ function Navbar({ regions, selectedRegion, onRegionChange }) {
         </li>
         <li>
           <Link
-            to="/wikiarticles"
+            to="/videos"
             className="hover:underline underline-offset-4"
           >
-            Random Articles
+            Videos
           </Link>
         </li>
         <li>

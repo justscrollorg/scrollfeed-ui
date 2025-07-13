@@ -12,9 +12,9 @@ function App() {
       <Navbar />
       <div className="max-w-7xl mx-auto px-4 py-8 font-sans text-gray-800 dark:text-gray-100">
         <Routes>
-          <Route path="/" element={<VideoPage />} />
+          <Route path="/" element={<WikipediaArticlesPage />} />
           <Route path="/newsarticles" element={<NewsArticlesPage />} />
-          <Route path="/wikiarticles" element={<WikipediaArticlesPage />} />
+          <Route path="/videos" element={<VideoPage />} />
           <Route path="/jokes" element={<JokesPage />} />
         </Routes>
       </div>
