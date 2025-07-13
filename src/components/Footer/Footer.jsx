@@ -10,7 +10,7 @@ function Footer() {
         </p>
 
         <p className="text-xs text-gray-400 italic mt-2">
-          © {new Date().getFullYear()} JustScroll by Anurag Kumar. All rights
+          © {new Date().getFullYear()} https://justscrolls.com/ by Anurag Kumar. All rights
           reserved.
         </p>
       </div>
