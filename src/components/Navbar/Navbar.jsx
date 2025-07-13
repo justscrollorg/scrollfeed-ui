@@ -11,25 +11,31 @@ function Navbar({ regions, selectedRegion, onRegionChange }) {
       </div>
 
       {/* Center: Nav Links */}
-      <ul className="flex-1 flex justify-center gap-6 text-lg font-artistic tracking-wider uppercase italic text-yellow-200">
+      <ul className="flex-1 flex justify-center gap-6 text-sm italic text-white">
         <li>
-          <Link to="/" className="hover:underline">
-            home
+          <Link to="/" className="hover:underline underline-offset-4">
+            Home
           </Link>
         </li>
         <li>
-          <Link to="/newsarticles" className="hover:underline">
-            news-articles
+          <Link
+            to="/newsarticles"
+            className="hover:underline underline-offset-4"
+          >
+            News Articles
           </Link>
         </li>
         <li>
-          <Link to="/wikiarticles" className="hover:underline">
-            random-articles
+          <Link
+            to="/wikiarticles"
+            className="hover:underline underline-offset-4"
+          >
+            Random Articles
           </Link>
         </li>
         <li>
-          <Link to="/jokes" className="hover:underline">
-            jokes
+          <Link to="/jokes" className="hover:underline underline-offset-4">
+            Jokes
           </Link>
         </li>
       </ul>
