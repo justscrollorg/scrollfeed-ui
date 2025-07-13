@@ -30,7 +30,7 @@ function VideoPage() {
 
   return (
     <>
-      <h1 className="text-3xl font-bold text-blue-700 mb-6">Videos</h1>
+      {/* <h1 className="text-3xl font-bold text-blue-700 mb-6">Videos</h1> */}
       <SearchBar
         query={searchQuery}
         onQueryChange={(e) => setSearchQuery(e.target.value)}

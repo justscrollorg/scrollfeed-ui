@@ -25,7 +25,7 @@ function NewsArticlesPage() {
 
   return (
     <>
-      <h1 className="text-3xl font-bold text-blue-700 mb-6">News Articles</h1>
+      {/* <h1 className="text-3xl font-bold text-blue-700 mb-6">News Articles</h1> */}
       <div className="flex flex-wrap gap-4">
         {newsArticles.map((article, index) => (
           <div key={index} className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4">
