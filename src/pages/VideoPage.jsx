@@ -7,7 +7,7 @@ import { fetchRegions, searchVideos } from "../services/api";
 
 function VideoPage() {
   const [regions, setRegions] = useState([]);
-  const [selectedRegion, setSelectedRegion] = useState("US");
+  const [selectedRegion, setSelectedRegion] = useState("IN");
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [loading, setLoading] = useState(false);

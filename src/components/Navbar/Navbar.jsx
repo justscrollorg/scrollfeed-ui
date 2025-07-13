@@ -5,7 +5,7 @@ function Navbar({ regions, selectedRegion, onRegionChange }) {
     <nav className="bg-blue-700 text-white px-4 py-3 flex justify-between items-center sticky top-0 z-50 shadow">
       {/* Left: Logo */}
       <div className="flex-1">
-        <Link to="/" className="font-bold text-xl">
+        <Link to="/" className="flex-1 flex justify-center gap-6 text-sm italic text-white">
           JustScroll
         </Link>
       </div>

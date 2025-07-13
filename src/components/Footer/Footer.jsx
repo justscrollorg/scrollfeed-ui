@@ -6,11 +6,11 @@ function Footer() {
       <div className="max-w-6xl mx-auto px-4 space-y-2">
         <p className="text-gray-500 italic">
           This site uses the Public official APIs to display publicly available
-          metadata.
+          data.
         </p>
 
         <p className="text-xs text-gray-400 italic mt-2">
-          © {new Date().getFullYear()} Just Scroll by Anurag Kumar. All rights
+          © {new Date().getFullYear()} JustScroll by Anurag Kumar. All rights
           reserved.
         </p>
       </div>
