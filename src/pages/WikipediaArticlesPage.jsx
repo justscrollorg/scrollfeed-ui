@@ -24,7 +24,12 @@ function WikipediaArticlesPage() {
 
   const maxPages = Math.ceil(total / pageSize);
 
-  const PaginationControls = () => (
+  const PaginationControls = () => {
+  const maxPagesAllowed = 10;
+  const actualMaxPages = Math.ceil(total / pageSize);
+  const displayPages = Math.min(actualMaxPages, maxPagesAllowed);
+
+  return (
     <div className="flex flex-col items-center gap-4 mt-6">
       <div className="flex flex-wrap justify-center gap-2">
         <button
@@ -35,7 +40,7 @@ function WikipediaArticlesPage() {
           ← Previous
         </button>
 
-        {Array.from({ length: maxPages }, (_, i) => i + 1).map((pg) => (
+        {Array.from({ length: displayPages }, (_, i) => i + 1).map((pg) => (
           <button
             key={pg}
             onClick={() => fetchArticles(pg)}
@@ -51,7 +56,7 @@ function WikipediaArticlesPage() {
 
         <button
           onClick={() => fetchArticles(page + 1)}
-          disabled={page >= maxPages}
+          disabled={page >= actualMaxPages}
           className="bg-blue-700 text-yellow-100 px-4 py-2 rounded shadow hover:bg-blue-800 transition disabled:opacity-50 italic"
         >
           Next →
@@ -77,6 +82,8 @@ function WikipediaArticlesPage() {
       </div>
     </div>
   );
+};
+
 
   return (
     <>
