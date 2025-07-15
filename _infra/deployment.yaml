@@ -5,7 +5,7 @@ metadata:
   labels:
     app: reactions-ui
 spec:
-  replicas: 1
+  replicas: 5
   selector:
     matchLabels:
       app: reactions-ui
