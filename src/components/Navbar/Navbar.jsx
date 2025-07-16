@@ -41,7 +41,7 @@ function Navbar({ regions, selectedRegion, onRegionChange }) {
       </ul>
 
       {/* Right: Region Selector */}
-      <div className="flex-1 flex justify-end">
+      {/* <div className="flex-1 flex justify-end">
         <select
           className="text-black px-2 py-1 rounded"
           value={selectedRegion}
@@ -53,7 +53,7 @@ function Navbar({ regions, selectedRegion, onRegionChange }) {
             </option>
           ))}
         </select>
-      </div>
+      </div> */}
     </nav>
   );
 }
