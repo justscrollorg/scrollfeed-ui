@@ -1,4 +1,4 @@
-import { API_BASE, NEWS_API_BASE } from "../config/constants";
+import { API_BASE } from "../config/constants";
 
 export const fetchRegions = async () => {
   try {
