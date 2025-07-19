@@ -13,10 +13,11 @@ export const fetchNewsByRegion = async (region) => {
     }
 
     const data = await res.json();
+    const articles = data || [];
     console.log(
-      `[fetchNewsByRegion] Received ${data.length} articles for region ${region}`
+      `[fetchNewsByRegion] Received ${articles.length} articles for region ${region}`
     );
-    return data || [];
+    return articles;
   } catch (err) {
     console.error("[fetchNewsByRegion] Fetch failed:", err);
     return [];
