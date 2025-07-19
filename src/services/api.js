@@ -2,12 +2,12 @@ import { API_BASE, NEWS_API_BASE } from "../config/constants";
 
 export const fetchRegions = async () => {
   try {
-    const res = await fetch(`${NEWS_API_BASE}/regions`);
+    const res = await fetch(`${API_BASE}/regions`);
     const data = await res.json();
     return data;
   } catch (error) {
     console.error("Failed to fetch regions:", error);
-    return { regions: ["us", "in", "de"] }; // fallback
+    return ["US", "IN", "DE"]; // fallback as array
   }
 };
 
