@@ -30,7 +30,11 @@ function VideoPage() {
     if (!searchQuery) return;
     setLoading(true);
     searchVideos(searchQuery, selectedRegion)
-      .then(setSearchResults)
+      .then((data) => {
+        // Handle YouTube API response format
+        const videos = data.items || data || [];
+        setSearchResults(videos);
+      })
       .finally(() => setLoading(false));
   };
 
