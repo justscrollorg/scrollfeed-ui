@@ -34,6 +34,11 @@ function VideoPage() {
       .finally(() => setLoading(false));
   };
 
+  const handleClear = () => {
+    setSearchQuery("");
+    setSearchResults([]);
+  };
+
   const handleRegionChange = (e) => {
     setSelectedRegion(e.target.value);
   };
@@ -54,6 +59,7 @@ function VideoPage() {
         query={searchQuery}
         onQueryChange={(e) => setSearchQuery(e.target.value)}
         onSearch={handleSearch}
+        onClear={handleClear}
       />
       {searchQuery.length > 0 ? (
         <Results videos={searchResults} loading={loading} />
