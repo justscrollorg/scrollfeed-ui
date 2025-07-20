@@ -20,18 +20,23 @@ function App() {
   return (
     <ErrorBoundary>
       <QueryProvider>
-        <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 transition-colors duration-300">
           <Navbar />
-          <div className="max-w-7xl mx-auto px-4 py-8 font-sans text-gray-800 dark:text-gray-100">
-            <Suspense fallback={<LoadingSpinner fullScreen message="Loading page..." />}>
-              <Routes>
-                <Route path="/" element={<WikipediaArticlesPage />} />
-                <Route path="/newsarticles" element={<NewsArticlesPage />} />
-                <Route path="/videos" element={<VideoPage />} />
-                <Route path="/jokes" element={<JokesPage />} />
-              </Routes>
-            </Suspense>
-          </div>
+          <main className="relative">
+            {/* Hero gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/20 dark:to-slate-900/20 pointer-events-none"></div>
+            
+            <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+              <Suspense fallback={<LoadingSpinner fullScreen message="Loading page..." />}>
+                <Routes>
+                  <Route path="/" element={<WikipediaArticlesPage />} />
+                  <Route path="/newsarticles" element={<NewsArticlesPage />} />
+                  <Route path="/videos" element={<VideoPage />} />
+                  <Route path="/jokes" element={<JokesPage />} />
+                </Routes>
+              </Suspense>
+            </div>
+          </main>
           <Footer />
         </div>
       </QueryProvider>
