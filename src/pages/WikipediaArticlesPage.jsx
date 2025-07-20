@@ -116,9 +116,9 @@ function WikipediaArticlesPage() {
               <h2 className="font-semibold text-lg mb-2 italic">
                 {article.title}
               </h2>
-              {article.image ? (
+              {article.thumbnail?.source ? (
                 <img
-                  src={article.image}
+                  src={article.thumbnail.source}
                   alt={article.title}
                   className="mb-2 w-full h-40 object-cover rounded"
                   onError={(e) => {
@@ -134,7 +134,7 @@ function WikipediaArticlesPage() {
                 {article.extract}
               </p>
               <a
-                href={article.url}
+                href={article.content_urls?.desktop?.page}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-blue-600 hover:underline text-sm italic"
