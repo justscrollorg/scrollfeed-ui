@@ -3,7 +3,7 @@ import { useWikipediaArticles } from "../hooks/useWikipedia";
 
 function WikipediaArticlesPage() {
   const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(20);
+  const [pageSize, setPageSize] = useState(10);
 
   // Use React Query hook for better caching and performance
   const { data, isLoading: loading, error } = useWikipediaArticles(page, pageSize);
