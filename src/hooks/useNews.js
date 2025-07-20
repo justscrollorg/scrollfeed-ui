@@ -21,6 +21,8 @@ export const useNews = (region, page = 1, limit = 33) => {
     cacheTime: CONFIG.CACHE_TIME,
     enabled: !!region,
     keepPreviousData: true,
+    refetchOnWindowFocus: false, // Don't refetch when window gains focus
+    refetchOnMount: false, // Don't refetch on component mount if data exists
   });
 };
 

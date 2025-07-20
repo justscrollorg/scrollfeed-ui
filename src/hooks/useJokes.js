@@ -18,6 +18,8 @@ export const useJokes = (page = 1, pageSize = 20) => {
     staleTime: CONFIG.STALE_TIME,
     cacheTime: CONFIG.CACHE_TIME,
     keepPreviousData: true,
+    refetchOnWindowFocus: false, // Don't refetch when window gains focus
+    refetchOnMount: false, // Don't refetch on component mount if data exists
   });
 };
 
