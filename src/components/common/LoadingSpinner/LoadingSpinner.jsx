@@ -114,36 +114,3 @@ const LoadingSpinner = ({
 };
 
 export default LoadingSpinner;
-      {message && (
-        <p className="mt-2 text-gray-700 dark:text-gray-300 text-sm">
-          {message}
-        </p>
-      )}
-    </div>
-  );
-};
-
-// Inline spinner for buttons or small spaces
-export const InlineSpinner = ({ size = 'small', color = 'white' }) => {
-  const sizeClasses = {
-    small: 'h-3 w-3',
-    medium: 'h-4 w-4',
-  };
-
-  const colorClasses = {
-    white: 'border-white',
-    blue: 'border-blue-600',
-    gray: 'border-gray-600',
-  };
-
-  return (
-    <div className={`
-      ${sizeClasses[size]} 
-      ${colorClasses[color]} 
-      border-2 border-solid border-t-transparent 
-      rounded-full animate-spin
-    `}></div>
-  );
-};
-
-export default LoadingSpinner;

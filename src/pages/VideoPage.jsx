@@ -1,6 +1,6 @@
 // src/pages/VideoPage.jsx
 import { useEffect, useState } from "react";
-import { Play, Clock, Eye, Trending, ChevronRight } from "lucide-react";
+import { Play, Clock, Eye, TrendingUp, ChevronRight } from "lucide-react";
 import SearchBar from "../components/SearchBar/SearchBar";
 import Tabs from "../components/Tabs/Tabs";
 import Results from "../components/Results/Results";
@@ -77,7 +77,7 @@ function VideoPage() {
             {/* Stats */}
             <div className="flex items-center justify-center space-x-8 mb-8">
               <div className="flex items-center space-x-2 text-blue-100">
-                <Trending className="w-5 h-5" />
+                <TrendingUp className="w-5 h-5" />
                 <span className="text-sm font-medium">Trending Content</span>
               </div>
               <div className="flex items-center space-x-2 text-blue-100">
