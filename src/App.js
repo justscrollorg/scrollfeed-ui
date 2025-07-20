@@ -5,6 +5,7 @@ import ErrorBoundary from "./components/common/ErrorBoundary/ErrorBoundary";
 import LoadingSpinner from "./components/common/LoadingSpinner/LoadingSpinner";
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
+import { useAnalytics } from "./hooks/useAnalytics";
 
 // Lazy load pages for better performance
 const VideoPage = lazy(() => import("./pages/VideoPage"));
@@ -13,6 +14,9 @@ const JokesPage = lazy(() => import("./pages/JokesPage"));
 const WikipediaArticlesPage = lazy(() => import("./pages/WikipediaArticlesPage"));
 
 function App() {
+  // Initialize analytics tracking
+  useAnalytics();
+
   return (
     <ErrorBoundary>
       <QueryProvider>
