@@ -38,11 +38,10 @@ function NewsArticlesPage() {
   // Update pagination when data changes
   useEffect(() => {
     if (newsData?.metadata?.totalPages) {
-      // Update pagination total based on actual data
-      const total = newsData.metadata.totalPages * pagination.pageSize;
+      // Reset pagination when data changes
       pagination.reset();
     }
-  }, [newsData?.metadata?.totalPages, currentRegion]);
+  }, [newsData?.metadata?.totalPages, currentRegion, pagination]);
 
   // Prefetch next page when current page loads
   useEffect(() => {

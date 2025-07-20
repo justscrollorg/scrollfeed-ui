@@ -1,3 +1,9 @@
+// Import services for backward compatibility functions
+import { newsApiService } from './domains/news/newsApi.js';
+import { videoApiService } from './domains/videos/videoApi.js';
+import { wikipediaApiService } from './domains/wikipedia/wikipediaApi.js';
+import { jokesApiService } from './domains/jokes/jokesApi.js';
+
 // Core services
 export { default as httpClient } from './core/httpClient.js';
 export * from './core/errorHandler.js';

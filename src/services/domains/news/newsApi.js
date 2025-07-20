@@ -1,6 +1,6 @@
-import httpClient from '../core/httpClient.js';
-import { handleApiError, withRetry } from '../core/errorHandler.js';
-import { API_CONFIG } from '../../config/apiConfig.js';
+import httpClient from '../../core/httpClient.js';
+import { handleApiError, withRetry } from '../../core/errorHandler.js';
+import { API_CONFIG } from '../../../config/apiConfig.js';
 
 // News API service class
 class NewsApiService {
