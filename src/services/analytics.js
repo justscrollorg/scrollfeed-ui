@@ -20,7 +20,7 @@ class AnalyticsService {
   }
 
   getUserMetadata() {
-    return {
+    const metadata = {
       user_agent: navigator.userAgent,
       language: navigator.language || navigator.userLanguage,
       screen_width: window.screen.width,
@@ -28,6 +28,59 @@ class AnalyticsService {
       timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
       referrer: document.referrer || '',
     };
+
+    // Add additional device/browser information if available
+    try {
+      // Hardware concurrency (CPU cores)
+      if (navigator.hardwareConcurrency) {
+        metadata.cpu_cores = navigator.hardwareConcurrency;
+      }
+
+      // Memory information (if available)
+      if (navigator.deviceMemory) {
+        metadata.device_memory = navigator.deviceMemory; // GB
+      }
+
+      // Connection information
+      if (navigator.connection) {
+        metadata.connection_type = navigator.connection.effectiveType || navigator.connection.type;
+        metadata.connection_downlink = navigator.connection.downlink;
+      }
+
+      // Platform information
+      if (navigator.platform) {
+        metadata.platform = navigator.platform;
+      }
+
+      // Vendor information
+      if (navigator.vendor) {
+        metadata.vendor = navigator.vendor;
+      }
+
+      // Touch capability
+      metadata.touch_support = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+      // Color depth
+      if (window.screen.colorDepth) {
+        metadata.color_depth = window.screen.colorDepth;
+      }
+
+      // Pixel ratio
+      if (window.devicePixelRatio) {
+        metadata.pixel_ratio = window.devicePixelRatio;
+      }
+
+      // Available screen size (excluding taskbars)
+      if (window.screen.availWidth && window.screen.availHeight) {
+        metadata.available_screen_width = window.screen.availWidth;
+        metadata.available_screen_height = window.screen.availHeight;
+      }
+
+    } catch (error) {
+      console.debug('Some device metadata not available:', error);
+    }
+
+    return metadata;
   }
 
   async sendEvent(eventData) {
