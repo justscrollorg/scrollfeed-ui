@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useWikipediaArticles } from "../hooks/useWikipedia";
 
 function WikipediaArticlesPage() {
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
+  const [localTotal, setLocalTotal] = useState(0);
 
   // Use React Query hook for better caching and performance
   const { data, isLoading: loading, error } = useWikipediaArticles(page, pageSize);
@@ -11,25 +12,83 @@ function WikipediaArticlesPage() {
   const articles = data?.articles || [];
   const total = data?.total || 0;
 
-  const maxPages = Math.ceil(total / pageSize);
+  // Update local total when data changes to prevent inconsistencies
+  useEffect(() => {
+    if (data?.total) {
+      setLocalTotal(data.total);
+    }
+  }, [data?.total]);
+
+  // Use consistent total for calculations
+  const totalToUse = localTotal || total;
+  const maxPages = Math.ceil(totalToUse / pageSize);
 
   const PaginationControls = () => {
     const maxPagesAllowed = 10;
-    const actualMaxPages = Math.ceil(total / pageSize);
-    const displayPages = Math.min(actualMaxPages, maxPagesAllowed);
+    const actualMaxPages = Math.ceil(totalToUse / pageSize);
 
     const handlePageChange = (newPage) => {
-      setPage(newPage);
+      // Validate page bounds
+      const validPage = Math.max(1, Math.min(newPage, actualMaxPages));
+      setPage(validPage);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
     const handlePageSizeChange = (newPageSize) => {
       setPageSize(newPageSize);
       setPage(1);
+      // Reset local total to force recalculation
+      setLocalTotal(0);
     };
+
+    // Generate smart pagination numbers
+    const generatePageNumbers = () => {
+      const pages = [];
+      const showPages = Math.min(maxPagesAllowed, actualMaxPages);
+      
+      if (actualMaxPages <= showPages) {
+        // Show all pages if total is small
+        for (let i = 1; i <= actualMaxPages; i++) {
+          pages.push(i);
+        }
+      } else {
+        // Smart pagination for larger page counts
+        const startPage = Math.max(1, page - Math.floor(showPages / 2));
+        const endPage = Math.min(actualMaxPages, startPage + showPages - 1);
+        
+        for (let i = startPage; i <= endPage; i++) {
+          pages.push(i);
+        }
+        
+        // Add first page if not visible
+        if (startPage > 1) {
+          pages.unshift(1);
+          if (startPage > 2) {
+            pages.splice(1, 0, '...');
+          }
+        }
+        
+        // Add last page if not visible
+        if (endPage < actualMaxPages) {
+          if (endPage < actualMaxPages - 1) {
+            pages.push('...');
+          }
+          pages.push(actualMaxPages);
+        }
+      }
+      
+      return pages;
+    };
+
+    const pageNumbers = generatePageNumbers();
 
     return (
       <div className="flex flex-col items-center gap-6 py-8">
+        {/* Debug info - you can remove this in production */}
+        <div className="text-xs text-slate-500 bg-slate-100 dark:bg-slate-700 px-3 py-1 rounded">
+          Debug: Total={totalToUse}, Pages={actualMaxPages}, Current={page}, Articles={articles.length}
+        </div>
+
         <div className="flex flex-wrap justify-center gap-2">
           <button
             onClick={() => handlePageChange(page - 1)}
@@ -42,18 +101,24 @@ function WikipediaArticlesPage() {
             <span className="font-medium">Previous</span>
           </button>
 
-          {Array.from({ length: displayPages }, (_, i) => i + 1).map((pg) => (
-            <button
-              key={pg}
-              onClick={() => handlePageChange(pg)}
-              className={`px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
-                page === pg
-                  ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg transform scale-105"
-                  : "bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 hover:shadow-md"
-              }`}
-            >
-              {pg}
-            </button>
+          {pageNumbers.map((pg, index) => (
+            pg === '...' ? (
+              <span key={`ellipsis-${index}`} className="px-3 py-2 text-slate-500 dark:text-slate-400">
+                ...
+              </span>
+            ) : (
+              <button
+                key={pg}
+                onClick={() => handlePageChange(pg)}
+                className={`px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
+                  page === pg
+                    ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg transform scale-105"
+                    : "bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-600 hover:shadow-md"
+                }`}
+              >
+                {pg}
+              </button>
+            )
           ))}
 
           <button
@@ -84,6 +149,11 @@ function WikipediaArticlesPage() {
               </option>
             ))}
           </select>
+        </div>
+
+        {/* Page info */}
+        <div className="text-sm text-slate-600 dark:text-slate-400">
+          Showing {((page - 1) * pageSize) + 1} to {Math.min(page * pageSize, totalToUse)} of {totalToUse} articles
         </div>
       </div>
     );

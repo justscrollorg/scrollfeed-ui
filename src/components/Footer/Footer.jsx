@@ -148,11 +148,7 @@ const Footer = () => {
               <p className="text-slate-500 text-xs italic">
                 This site uses the Public official APIs to display publicly available data.
               </p>
-              <div className="flex items-center space-x-1 text-slate-400 text-sm">
-                <span>Made with</span>
-                <Heart className="w-4 h-4 text-red-400 fill-current" />
-                <span>by the team</span>
-              </div>
+              
             </div>
             
             {/* Scroll to Top Button */}
