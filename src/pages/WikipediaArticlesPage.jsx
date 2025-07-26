@@ -84,11 +84,6 @@ function WikipediaArticlesPage() {
 
     return (
       <div className="flex flex-col items-center gap-6 py-8">
-        {/* Debug info - you can remove this in production */}
-        <div className="text-xs text-slate-500 bg-slate-100 dark:bg-slate-700 px-3 py-1 rounded">
-          Debug: Total={totalToUse}, Pages={actualMaxPages}, Current={page}, Articles={articles.length}
-        </div>
-
         <div className="flex flex-wrap justify-center gap-2">
           <button
             onClick={() => handlePageChange(page - 1)}
