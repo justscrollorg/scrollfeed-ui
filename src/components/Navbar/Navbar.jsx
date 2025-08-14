@@ -19,6 +19,7 @@ function Navbar({ regions, selectedRegion, onRegionChange }) {
     { path: "/newsarticles", label: "News", icon: "📰" },
     { path: "/videos", label: "Videos", icon: "🎥" },
     { path: "/jokes", label: "Fun", icon: "😄" },
+    { path: "/memes", label: "Memes", icon: "🖼️" },
   ];
 
   const isActivePath = (path) => location.pathname === path;

@@ -12,6 +12,7 @@ const VideoPage = lazy(() => import("./pages/VideoPage"));
 const NewsArticlesPage = lazy(() => import("./pages/NewsArticlesPage"));
 const JokesPage = lazy(() => import("./pages/JokesPage"));
 const WikipediaArticlesPage = lazy(() => import("./pages/WikipediaArticlesPage"));
+const MemesPage = lazy(() => import("./pages/MemesPage"));
 
 function App() {
   // Initialize analytics tracking
@@ -33,6 +34,7 @@ function App() {
                   <Route path="/newsarticles" element={<NewsArticlesPage />} />
                   <Route path="/videos" element={<VideoPage />} />
                   <Route path="/jokes" element={<JokesPage />} />
+                  <Route path="/memes" element={<MemesPage />} />
                 </Routes>
               </Suspense>
             </div>
