@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { MEMES_API_BASE } from "../config/constants";
 
 const MemesPage = () => {
   const [memes, setMemes] = useState([]);
@@ -9,7 +10,7 @@ const MemesPage = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get("/api/memes/trending")
+      .get(`${MEMES_API_BASE}/memes/trending`)
       .then((res) => {
         setMemes(res.data);
         setLoading(false);
