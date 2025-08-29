@@ -11,10 +11,10 @@ const API_ENDPOINTS = {
     JOKES_API_BASE: "/jokes-api",
   },
   production: {
-    API_BASE: process.env.REACT_APP_API_BASE || "/api",
-    NEWS_API_BASE: process.env.REACT_APP_NEWS_API_BASE || "/news-api",
-    ARTICLES_API_BASE: process.env.REACT_APP_ARTICLES_API_BASE || "/articles-api",
-    JOKES_API_BASE: process.env.REACT_APP_JOKES_API_BASE || "/jokes-api",
+    API_BASE: process.env.REACT_APP_API_BASE || "https://justscrolls.com",
+    NEWS_API_BASE: process.env.REACT_APP_NEWS_API_BASE || "https://justscrolls.com/news-api",
+    ARTICLES_API_BASE: process.env.REACT_APP_ARTICLES_API_BASE || "https://justscrolls.com/articles-api",
+    JOKES_API_BASE: process.env.REACT_APP_JOKES_API_BASE || "https://justscrolls.com/jokes-api",
   }
 };
 
