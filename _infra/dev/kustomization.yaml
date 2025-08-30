@@ -1,0 +1,10 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- ../dev-deployment.yaml
+
+commonLabels:
+  app.kubernetes.io/name: dev-scrollfeed-ui
+  app.kubernetes.io/component: frontend
+  environment: dev
