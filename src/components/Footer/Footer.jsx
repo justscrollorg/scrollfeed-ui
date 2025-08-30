@@ -143,7 +143,7 @@ const Footer = () => {
           <div className="flex flex-col md:flex-row items-center justify-between">
             <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-4 mb-4 md:mb-0">
               <p className="text-slate-400 text-sm">
-                © {currentYear} ScrollFeed by Anurag Kumar. All rights reserved.
+                © {currentYear} justscrolls.com. All rights reserved.
               </p>
               <p className="text-slate-500 text-xs italic">
                 This site uses the Public official APIs to display publicly available data.
