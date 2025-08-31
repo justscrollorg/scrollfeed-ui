@@ -1,7 +1,8 @@
 // src/pages/NewsArticlesPage.jsx
 import React, { useState, useEffect } from "react";
 import { Newspaper, Globe, Clock, TrendingUp, Filter, Search, ChevronRight } from "lucide-react";
-import { useNews, usePrefetchNews, useNewsRegions } from "../hooks/useNews";
+import { useNews, usePrefetchNews } from "../hooks/useNews";
+import { useNews, useNewsRegions } from "../hooks/useNews";
 import { usePagination } from "../hooks/usePagination";
 import { useAppStore } from "../store/appStore";
 import NewsCard from "../components/NewsCard/NewsCard";
