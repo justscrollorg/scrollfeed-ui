@@ -30,24 +30,3 @@ export const fetchNewsByRegion = async (region, page = 1, limit = 33) => {
     return { articles: [], metadata: {} };
   }
 };
-
-export const fetchNewsRegions = async () => {
-  try {
-    const url = `${NEWS_API_BASE}/regions`;
-    console.log(`[fetchNewsRegions] Fetching from ${url}`);
-    
-    const res = await fetch(url);
-
-    if (!res.ok) {
-      console.error(`[fetchNewsRegions] HTTP error: ${res.status}`);
-      return { regions: ["us", "in", "de"] }; // fallback
-    }
-
-    const data = await res.json();
-    console.log(`[fetchNewsRegions] Received regions:`, data);
-    return data;
-  } catch (err) {
-    console.error("[fetchNewsRegions] Fetch failed:", err);
-    return { regions: ["us", "in", "de"] }; // fallback
-  }
-};

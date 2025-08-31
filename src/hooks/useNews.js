@@ -37,16 +37,6 @@ export const useNewsSearch = (query, region, enabled = true) => {
   });
 };
 
-// Hook for news regions
-export const useNewsRegions = () => {
-  return useQuery({
-    queryKey: NEWS_QUERY_KEYS.regions(),
-    queryFn: () => newsApiService.fetchNewsRegions(),
-    staleTime: CONFIG.CACHE_TIME, // Regions change less frequently
-    cacheTime: CONFIG.CACHE_TIME * 2,
-  });
-};
-
 // Hook for news categories
 export const useNewsCategories = () => {
   return useQuery({
