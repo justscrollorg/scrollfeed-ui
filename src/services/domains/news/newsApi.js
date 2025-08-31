@@ -61,6 +61,32 @@ class NewsApiService {
       return [];
     }
   }
+
+  // Fetch news regions
+  async fetchNewsRegions() {
+    try {
+      const response = await withRetry(() =>
+        httpClient.get(`${this.baseURL}/regions`)
+      );
+      return response.data;
+    } catch (error) {
+      handleApiError(error, 'fetchNewsRegions');
+      return { regions: ["us", "in", "de"] }; // fallback
+    }
+  }
+
+  // Fetch available news regions
+  async fetchNewsRegions() {
+    try {
+      const response = await withRetry(() =>
+        httpClient.get(`${this.baseURL}/regions`)
+      );
+      return response.data;
+    } catch (error) {
+      handleApiError(error, 'fetchNewsRegions');
+      return { regions: ["us", "in", "de"] }; // fallback
+    }
+  }
 }
 
 // Export singleton instance

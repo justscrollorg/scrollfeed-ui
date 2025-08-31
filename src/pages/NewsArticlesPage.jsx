@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { Newspaper, Globe, Clock, TrendingUp, Filter, Search, ChevronRight } from "lucide-react";
 import { useNews, usePrefetchNews } from "../hooks/useNews";
-import { useVideoRegions } from "../hooks/useVideos";
+import { useNews, useNewsRegions } from "../hooks/useNews";
 import { usePagination } from "../hooks/usePagination";
 import { useAppStore } from "../store/appStore";
 import NewsCard from "../components/NewsCard/NewsCard";
@@ -22,7 +22,7 @@ function NewsArticlesPage() {
   });
 
   // Fetch regions
-  const { data: regionsData } = useVideoRegions();
+  const { data: regionsData } = useNewsRegions();
   const regions = regionsData?.regions || ["us", "in", "de"];
 
   // Fetch news data

@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 class AnalyticsService {
   constructor() {
     this.sessionId = this.getOrCreateSessionId();
-    this.baseUrl = '/analytics-api/api/v1';
+    this.baseUrl = '/analytics-api';
     this.isEnabled = true;
     this.queue = [];
     this.lastPageEntry = Date.now();
