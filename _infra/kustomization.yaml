@@ -4,7 +4,5 @@ kind: Kustomization
 resources:
 - deployment.yaml
 
-commonLabels:
-  app.kubernetes.io/name: scrollfeed-ui
-  app.kubernetes.io/component: frontend
-  environment: prod
+# Removed commonLabels to prevent service selector mismatch
+# The deployment and service already have consistent app=scrollfeed-ui labels
